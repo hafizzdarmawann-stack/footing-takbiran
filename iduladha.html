@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footing Baju Takbiran - Lembu Giri</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Javanese:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1a120b;
+            background-image: 
+                radial-gradient(ellipse at 20% 50%, rgba(139, 90, 43, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(212, 175, 55, 0.3) 0%, transparent 50%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none"><path d="M10 10 Q 20 5 30 10 T 50 10" stroke="rgba(212,175,55,0.1)" stroke-width="1"/><circle cx="80" cy="20" r="3" fill="rgba(139,90,43,0.15)"/><circle cx="15" cy="80" r="4" fill="rgba(212,175,55,0.1)"/></svg>');
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* ===== WAYANG KIRI (GAMBAR PNG) ===== */
+        .wayang-image-left {
+            position: fixed;
+            left: 3%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 0;
+            opacity: 0.25;
+            width: 180px;
+            pointer-events: none;
+            filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
+        }
+
+        /* ===== WAYANG KANAN (GAMBAR PNG) ===== */
+        .wayang-image-right {
+            position: fixed;
+            right: 3%;
+            top: 50%;
+            transform: translateY(-50%) scaleX(-1);
+            z-index: 0;
+            opacity: 0.25;
+            width: 180px;
+            pointer-events: none;
+            filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5));
+        }
+
+        /* ===== GUNUNGAN ATAS ===== */
+        .gunungan-top {
+            position: fixed;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            opacity: 0.15;
+            width: 250px;
+            pointer-events: none;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+        }
+
+        /* ===== GUNUNGAN BAWAH ===== */
+        .gunungan-bottom {
+            position: fixed;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            opacity: 0.1;
+            width: 250px;
+            pointer-events: none;
+            filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+        }
+
+        @media (max-width: 900px) {
+            .wayang-image-left,
+            .wayang-image-right {
+                width: 120px;
+                opacity: 0.18;
+            }
+            .gunungan-top,
+            .gunungan-bottom {
+                width: 150px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .wayang-image-left,
+            .wayang-image-right {
+                width: 80px;
+                opacity: 0.12;
+            }
+            .gunungan-top,
+            .gunungan-bottom {
+                width: 100px;
+                opacity: 0.08;
+            }
+        }
+
+        /* ===== CONTAINER UTAMA ===== */
+        .container {
+            background: linear-gradient(145deg, #2c2416 0%, #3d3221 100%);
+            border-radius: 24px;
+            box-shadow: 
+                0 20px 50px rgba(0,0,0,0.6),
+                0 0 0 4px #6b4c2a,
+                0 0 0 8px #1a120b,
+                0 0 0 11px #d4af37;
+            width: 100%;
+            max-width: 650px;
+            padding: 40px 35px;
+            position: relative;
+            z-index: 1;
+            border: 1px solid #5a4020;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 30px solid #d4af37;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #5a4020;
+            padding-bottom: 20px;
+        }
+
+        /* ===== LOGO WAYANG.PNG ===== */
+        .logo-wayang {
+            display: block;
+            margin: 0 auto 15px;
+            width: 120px;
+            height: auto;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+        }
+
+        .bismillah-jawa {
+            font-family: 'Noto Sans Javanese', 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            color: #d4af37;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .header h2 {
+            font-size: 2rem;
+            color: #f5e6c8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .section-title {
+            font-size: 0.95rem;
+            color: #d4af37;
+            font-weight: 600;
+            margin: 20px 0 12px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, transparent, #3d3221, transparent);
+            padding: 5px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #e0d3b8;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            background: #1f1a10;
+            border: 2px solid #5a4020;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            color: #f5e6c8;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: #7a6a50;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #d4af37;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            background: #2a2315;
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23d4af37' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            padding-right: 40px;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 12px 18px;
+            background: #1f1a10;
+            border: 2px solid #5a4020;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            color: #c9a96e;
+            font-weight: 500;
+        }
+
+        .radio-option:hover {
+            border-color: #d4af37;
+            background: #2a2315;
+            color: #f5e6c8;
+        }
+
+        .radio-option input {
+            width: auto;
+            accent-color: #d4af37;
+            transform: scale(1.3);
+            cursor: pointer;
+        }
+
+        .radio-option:has(input:checked) {
+            border-color: #d4af37 !important;
+            background: #2a2315 !important;
+            color: #d4af37 !important;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 25px 18px;
+            }
+            .header h2 {
+                font-size: 1.5rem;
+            }
+            .logo-wayang {
+                width: 90px;
+            }
+        }
+
+        /* ===== BOX INFORMASI BIAYA ===== */
+        #infoBiaya {
+            display: none;
+            text-align: center;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin: 20px 0 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+        }
+
+        .biaya-disediakan {
+            display: block !important;
+            background: linear-gradient(145deg, #2a2315, #3d3221);
+            border: 2px solid #d4af37;
+            color: #f5e6c8;
+        }
+
+        .biaya-cari-sendiri {
+            display: block !important;
+            background: linear-gradient(145deg, #1f1a10, #2a2315);
+            border: 2px solid #8b6914;
+            color: #c9a96e;
+        }
+
+        .biaya-highlight {
+            color: #d4af37;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(180deg, #d4af37 0%, #8b6914 100%);
+            color: #1a120b;
+            border: 2px solid #6b4c2a;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.2);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(180deg, #e6c34a 0%, #a67c00 100%);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 20px;
+            color: #7a6a50;
+            font-size: 0.75rem;
+            font-style: italic;
+            border-top: 1px dashed #5a4020;
+            padding-top: 15px;
+        }
+
+        #message {
+            display: none;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            background: #2a2315;
+            border: 1px solid;
+        }
+        .success { display: block !important; color: #f5e6c8; border-color: #6b4c2a; background: #3d3221; }
+        .error { display: block !important; color: #ffb3b3; border-color: #8b0000; background: #2a1515; }
+
+        #ukuranGroup, #jumlahGroup {
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== AUDIO GAMELAN (AUTO-PLAY) ===== -->
+    <audio id="gamelanAudio" loop preload="auto">
+        <source src="gending.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ===== WAYANG KIRI (GAMBAR PNG) ===== -->
+    <img src="./wayang.png" class="wayang-image-left" alt="Wayang Kiri">
+
+    <!-- ===== WAYANG KANAN (GAMBAR PNG) ===== -->
+    <img src="./wayang.png" class="wayang-image-right" alt="Wayang Kanan">
+
+    <!-- ===== GUNUNGAN ATAS ===== -->
+    <svg class="gunungan-top" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150 10 L280 180 L20 180 Z" fill="none" stroke="#d4af37" stroke-width="3"/>
+        <path d="M150 40 L250 180 L50 180 Z" fill="#1a120b" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
+        <path d="M150 70 L220 180 L80 180 Z" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.4"/>
+        <circle cx="150" cy="100" r="15" fill="none" stroke="#d4af37" stroke-width="2"/>
+        <circle cx="150" cy="100" r="6" fill="#d4af37" opacity="0.8"/>
+        <rect x="125" y="130" width="50" height="50" rx="5" fill="#1a120b" stroke="#d4af37" stroke-width="2"/>
+        <line x1="150" y1="130" x2="150" y2="180" stroke="#d4af37" stroke-width="1.5"/>
+        <path d="M140 10 Q150 -5 160 10" fill="#d4af37" opacity="0.8"/>
+        <path d="M145 5 Q150 -8 155 5" fill="#ff6b00" opacity="0.6"/>
+    </svg>
+
+    <!-- ===== GUNUNGAN BAWAH ===== -->
+    <svg class="gunungan-bottom" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150 10 L280 180 L20 180 Z" fill="none" stroke="#d4af37" stroke-width="3"/>
+        <path d="M150 40 L250 180 L50 180 Z" fill="#1a120b" stroke="#d4af37" stroke-width="2" opacity="0.6"/>
+        <path d="M150 70 L220 180 L80 180 Z" fill="none" stroke="#d4af37" stroke-width="1.5" opacity="0.4"/>
+        <circle cx="150" cy="100" r="15" fill="none" stroke="#d4af37" stroke-width="2"/>
+        <circle cx="150" cy="100" r="6" fill="#d4af37" opacity="0.8"/>
+        <rect x="125" y="130" width="50" height="50" rx="5" fill="#1a120b" stroke="#d4af37" stroke-width="2"/>
+        <line x1="150" y1="130" x2="150" y2="180" stroke="#d4af37" stroke-width="1.5"/>
+        <path d="M140 10 Q150 -5 160 10" fill="#d4af37" opacity="0.8"/>
+        <path d="M145 5 Q150 -8 155 5" fill="#ff6b00" opacity="0.6"/>
+    </svg>
+
+    <!-- ===== CONTAINER FORM ===== -->
+    <div class="container">
+        <div class="header">
+            <!-- ===== LOGO WAYANG.PNG ===== -->
+            <img src="./wayang.png" class="logo-wayang" alt="Gunungan Wayang">
+            
+            <div class="bismillah-jawa">꧋ꦧꦶꦱ꧀ꦩꦶꦭ꧀ꦭꦃꦲꦶꦂꦫꦃꦩꦤ꧀ꦤꦶꦂꦫꦲꦶꦩ꧀</div>
+            <h2>Footing Baju Takbiran</h2>
+        </div>
+
+        <div id="message"></div>
+
+        <form id="footingFormJawa" name="footing-gunungan-jawa">
+            
+            <div class="section-title">Khusus Pemuda</div>
+            <div class="form-group">
+                <label for="nama">Nama Lengkap</label>
+                <input type="text" id="nama" name="nama" placeholder="Ketik nama asli Anda" required>
+            </div>
+
+            <div class="section-title">Pilihan Busana saat Takbir Keliling</div>
+            <div class="form-group">
+                <label>Pilih Jenis Pakaian</label>
+                <div class="radio-group" id="busanaGroup">
+                    <label class="radio-option">
+                        <input type="radio" name="busana_pemuda" value="Beskap" required> 
+                        <span>Beskap (Rekomendasi Utama)</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="busana_pemuda" value="Surjan Lurik"> 
+                        <span>Surjan Lurik</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="busana_pemuda" value="Batik Bapak-bapak"> 
+                        <span>Batik "Bapak-bapak"</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- ===== INFORMASI BIAYA ===== -->
+            <div id="infoBiaya"></div>
+
+            <div class="form-group" id="ukuranGroup" style="display: none;">
+                <label for="ukuran">Ukuran Baju (Khusus Beskap)</label>
+                <select id="ukuran" name="ukuran">
+                    <option value="" disabled selected>-- Pilih Ukuran --</option>
+                    <option value="S">S (Small)</option>
+                    <option value="M">M (Medium)</option>
+                    <option value="L">L (Large)</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="jumlahGroup" style="display: none;">
+                <label for="jumlah">Berapa Baju yang Dipesan? (Khusus Beskap)</label>
+                <input type="number" id="jumlah" name="jumlah" min="1" max="50" value="1">
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Simpan
+            </button>
+
+            <div class="footer-note">
+                "Manunggaling Kawula Gusti - Menyambut Kemenangan dengan Budaya Adiluhung"
+            </div>
+        </form>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // GANTI URL INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzZdzWBrPQDKEII27fGA2QE89UphcESd9PP_YDslIQOxdSAP8P6w_zGughHl9BXRtDT/exec';
+        const FALLBACK_KEY = 'gunungan_jawa_backup';
+
+        const form = document.getElementById('footingFormJawa');
+        const submitBtn = document.getElementById('submitBtn');
+        const msgDiv = document.getElementById('message');
+        const infoBiaya = document.getElementById('infoBiaya');
+
+        // UKURAN & JUMLAH HANYA MUNCUL JIKA BESKAP
+        const radioBusana = document.querySelectorAll('input[name="busana_pemuda"]');
+        const ukuranGroup = document.getElementById('ukuranGroup');
+        const ukuranSelect = document.getElementById('ukuran');
+        const jumlahGroup = document.getElementById('jumlahGroup');
+        const jumlahInput = document.getElementById('jumlah');
+
+        radioBusana.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'Beskap') {
+                    ukuranGroup.style.display = 'block';
+                    jumlahGroup.style.display = 'block';
+                    ukuranSelect.setAttribute('required', 'required');
+                    jumlahInput.setAttribute('required', 'required');
+                    
+                    infoBiaya.className = 'biaya-disediakan';
+                    infoBiaya.innerHTML = 'Biaya: <span class="biaya-highlight">Rp 25.000</span> (Hanya: Baju + Blangkon + Sabuk)';
+                    
+                } else if (this.value === 'Surjan Lurik') {
+                    ukuranGroup.style.display = 'none';
+                    jumlahGroup.style.display = 'none';
+                    ukuranSelect.removeAttribute('required');
+                    jumlahInput.removeAttribute('required');
+                    ukuranSelect.value = '';
+                    jumlahInput.value = '1';
+                    
+                    infoBiaya.className = 'biaya-cari-sendiri';
+                    infoBiaya.innerHTML = 'Busana <span class="biaya-highlight">Bisa mencari atau pinjam sendiri</span>';
+                    
+                } else if (this.value === 'Batik Bapak-bapak') {
+                    ukuranGroup.style.display = 'none';
+                    jumlahGroup.style.display = 'none';
+                    ukuranSelect.removeAttribute('required');
+                    jumlahInput.removeAttribute('required');
+                    ukuranSelect.value = '';
+                    jumlahInput.value = '1';
+                    
+                    infoBiaya.className = 'biaya-cari-sendiri';
+                    infoBiaya.innerHTML = 'Busana <span class="biaya-highlight">Bisa mencari atau pinjam sendiri</span>';
+                }
+            });
+        });
+
+        // AUTO-PLAY GAMELAN
+        const gamelanAudio = document.getElementById('gamelanAudio');
+        gamelanAudio.volume = 0.3;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            gamelanAudio.play().catch(() => {});
+        });
+
+        window.addEventListener('scroll', function playOnScroll() {
+            gamelanAudio.play().catch(() => {});
+        }, { once: true });
+
+        document.addEventListener('click', function playOnClick() {
+            gamelanAudio.play().catch(() => {});
+        }, { once: true });
+
+        // SUBMIT FORM
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = 'Menyiapkan Data...';
+            msgDiv.style.display = 'none';
+            msgDiv.className = '';
+
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((val, key) => { data[key] = val; });
+            
+            const busanaTerpilih = document.querySelector('input[name="busana_pemuda"]:checked');
+            if (busanaTerpilih) {
+                if (busanaTerpilih.value === 'Beskap') {
+                    data.biaya = 'Rp 25.000 (Disediakan Panitia)';
+                } else {
+                    data.biaya = 'Cari Sendiri';
+                }
+            }
+            
+            data.timestamp = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
+            data.id_pesanan = 'GUNUNGAN-' + Math.floor(Math.random() * 9000 + 1000);
+
+            try {
+                const params = new URLSearchParams(data);
+                await fetch(`${GOOGLE_SHEETS_URL}?${params.toString()}`, { 
+                    method: 'GET', 
+                    mode: 'no-cors' 
+                });
+                
+                msgDiv.textContent = 'Pesanan Tercatat! Siap memeriahkan Gunungan Wayang.';
+                msgDiv.className = 'success';
+                form.reset();
+                ukuranGroup.style.display = 'none';
+                jumlahGroup.style.display = 'none';
+                infoBiaya.className = '';
+                infoBiaya.innerHTML = '';
+            } catch (err) {
+                console.error('Error:', err);
+                let arr = JSON.parse(localStorage.getItem(FALLBACK_KEY) || '[]');
+                arr.push(data);
+                localStorage.setItem(FALLBACK_KEY, JSON.stringify(arr));
+                
+                msgDiv.textContent = 'Data disimpan offline. Panitia akan menghubungi Anda.';
+                msgDiv.className = 'error';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = 'Simpan';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                setTimeout(() => { msgDiv.style.display = 'none'; }, 8000);
+            }
+        });
+    </script>
+</body>
+</html>
